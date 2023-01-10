@@ -4,6 +4,7 @@ import 'package:urbanmatch_task/models/github_repository.dart';
 import 'package:urbanmatch_task/services/github_commits_services.dart';
 import 'package:urbanmatch_task/services/github_repository_services.dart';
 
+// State of the entire app will be managed by this Provider
 class AppState with ChangeNotifier {
   bool loadingRepos = false;
 
@@ -19,7 +20,9 @@ class AppState with ChangeNotifier {
   Future<void> fetchGithubRepositories() async {
     try {
       setLoadingRepos(true);
+      // Fetching all the public repos
       _repos = await GithubRepositorySevices().fetchGithubRepositories();
+      // async background call to fetch all the commits for all the public repos
       fetchAllGithubCommits();
       setLoadingRepos(false);
     } catch (_) {}
@@ -38,6 +41,7 @@ class AppState with ChangeNotifier {
     } catch (_) {}
   }
 
+  // Check if the commits for repo with provided id is fetched or not
   bool isCommitsFetched(int id) {
     final commits = _repos.firstWhere((element) => element.id == id).commits;
     if (commits == null) {
@@ -46,6 +50,7 @@ class AppState with ChangeNotifier {
     return true;
   }
 
+  // get all commits for repo with given id
   List<GithubCommits> getCommits(int id) {
     return _repos.firstWhere((element) => element.id == id).commits!;
   }
