@@ -47,7 +47,7 @@ class ServerRequest {
         throw _handleException(response);
       }
     } catch (_) {
-      throw RequestException('Request error');
+      throw RequestException(_.toString());
     }
   }
 }

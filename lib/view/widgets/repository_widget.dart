@@ -51,7 +51,7 @@ class _RepositoryWidgetState extends State<RepositoryWidget> {
 
   Widget _buildTitle() {
     return Text(
-      widget.repository.fullName!,
+      widget.repository.name!,
       style: const TextStyle(
         color: blue,
         fontWeight: FontWeight.bold,

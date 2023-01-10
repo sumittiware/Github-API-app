@@ -20,7 +20,6 @@ class _RepositoryDetailScreenState extends State<RepositoryDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: black,
       appBar: _buildAppBar(),
       body: _buildBody(),
     );
@@ -29,7 +28,6 @@ class _RepositoryDetailScreenState extends State<RepositoryDetailScreen> {
   AppBar _buildAppBar() {
     return AppBar(
       title: const Text('Commits'),
-      backgroundColor: black,
     );
   }
 
@@ -56,7 +54,7 @@ class _RepositoryDetailScreenState extends State<RepositoryDetailScreen> {
                 child: CircularProgressIndicator(),
               )
             : Timeline.tileBuilder(
-                physics: const NeverScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 theme: TimelineThemeData(
                   nodePosition: 0,
                   color: green,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:urbanmatch_task/app/app_state.dart';
+import 'package:urbanmatch_task/const.dart';
 import 'package:urbanmatch_task/style/colors.dart';
 import 'package:urbanmatch_task/view/widgets/repository_widget.dart';
 
@@ -22,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: black,
       appBar: _buildAppBar(),
       body: _buildBody(),
     );
@@ -30,12 +30,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: black,
       title: const Text(
-        'Github API',
+        '$repoName ',
         style: TextStyle(color: white),
       ),
-      centerTitle: true,
+      actions: [
+        Consumer<AppState>(
+          builder: (_, appState, __) {
+            int totalRepos = appState.repositories.length;
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Text(
+                  'Repositories ($totalRepos)',
+                  style: const TextStyle(color: white),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 

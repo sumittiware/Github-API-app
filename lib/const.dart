@@ -1,4 +1,4 @@
 const authToken =
-    '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';
+    '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';
 const apiServer = 'https://api.github.com';
 const repoName = 'freeCodeCamp';
