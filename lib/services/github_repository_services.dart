@@ -1,6 +1,7 @@
 import 'package:urbanmatch_task/const.dart';
 import 'package:urbanmatch_task/models/github_repository.dart';
 import 'package:urbanmatch_task/utils/request.dart';
+import 'package:urbanmatch_task/utils/request_exception.dart';
 
 class GithubRepositorySevices {
   final _serverRequest = ServerRequest();
@@ -20,8 +21,8 @@ class GithubRepositorySevices {
       }
 
       return publicRepos;
-    } catch (_) {
-      print(_.toString());
+    } on RequestException catch (_) {
+      print(_.message);
     }
     return [];
   }

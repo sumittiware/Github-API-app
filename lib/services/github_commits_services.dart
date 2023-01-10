@@ -1,5 +1,6 @@
 import 'package:urbanmatch_task/models/github_commit.dart';
 import 'package:urbanmatch_task/utils/request.dart';
+import 'package:urbanmatch_task/utils/request_exception.dart';
 
 class GithubCommitsServices {
   final _serverRequest = ServerRequest();
@@ -19,8 +20,8 @@ class GithubCommitsServices {
       }
 
       return githubCommits;
-    } catch (_) {
-      print('$_');
+    } on RequestException catch (_) {
+      print('${_.message}');
     }
     return [];
   }
